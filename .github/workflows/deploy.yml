@@ -22,5 +22,5 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             cd /home/geeg/dnp-shamir
             git pull
-            sudo /bin/systemctl restart flask
+            sudo -n /bin/systemctl restart flask || true
           EOF
