@@ -54,13 +54,13 @@ It uses polynomial interpolation over finite fields as described in Adi Shamir�
 
 
 ## 👥 Team Members
-🧑‍💻 [Ivan Murzin] (Frontend Dev)
+🧑‍💻 Ivan Murzin (Frontend Dev)
 
-🧑‍💻 [Alena Averina] (Presentations / Reports)
+🧑‍💻 Alena Averina (Presentations / Reports)
 
-🧑‍💻 [Anna Serova] (Crypto / Algorithms)
+🧑‍💻 Anna Serova (Crypto / Algorithms)
 
-🧑‍💻 [Egor Glebov] (Backend)
+🧑‍💻 Egor Glebov (Backend)
 
 
 ## 🚀 Run the Project
