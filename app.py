@@ -8,13 +8,13 @@ def index():
 
 @app.route('/split', methods=['POST'])
 def split():
-    user_input = request.form['question']
+    user_input = request.form['code']
     answer = check(user_input)
     return render_template('index.html', answer=answer)
 
 @app.route('/union', methods=['POST'])
 def union():
-    user_input = request.form['question']
+    user_input = request.form['code']
     answer = checkBack(user_input)
     return answer
 
