@@ -20,7 +20,7 @@ jobs:
       - name: Deploy code via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            cd ~/dnp-shamir
+            cd /home/geeg/dnp-shamir
             git pull
-            systemctl restart flask
+            sudo /bin/systemctl restart flask
           EOF
