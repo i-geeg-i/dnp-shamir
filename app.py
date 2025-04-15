@@ -6,21 +6,17 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/split', methods=['GET', 'POST'])
+@app.route('/split', methods=['POST'])
 def split():
-    answer = None
-    if request.method == 'POST':
-        user_input = request.form['question']
-        answer = check(user_input)
+    user_input = request.form['question']
+    answer = check(user_input)
     return render_template('index.html', answer=answer)
 
-@app.route('/union', methods=['GET', 'POST'])
+@app.route('/union', methods=['POST'])
 def union():
-    answer = None
-    if request.method == 'POST':
-        user_input = request.form['question']
-        answer = check(user_input, True)
-    return render_template('index.html', answer=answer)
+    user_input = request.form['question']
+    answer = checkBack(user_input)
+    return answer
 
 def check(user_input: str) -> str: #Make code from text
     try:
@@ -28,7 +24,7 @@ def check(user_input: str) -> str: #Make code from text
     except:
         return "Oooops!"
 
-def check(user_input: str, reverse: bool = True) -> int: #MAke text from code
+def checkBack(user_input: str) -> int: #MAke text from code
     #TODO decide how to use
     try:
         return resolve(user_input)
