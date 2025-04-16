@@ -47,9 +47,13 @@ def index():
 @app.route('/split', methods=['POST'])
 def split():
     user_input = request.form['code']
-    parts = request.form['parts']
-    keys = request.form['keys']
-    answer = check(user_input, parts, keys)
+    try:
+        parts = int(request.form['parts'])
+        keys = int(request.form['keys'])
+    except ValueError:
+        return "Invalid input: parts and keys must be numbers."
+
+    answer = check(user_input, keys, parts)
     return answer
 
 @app.route('/union', methods=['POST'])

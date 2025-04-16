@@ -89,6 +89,9 @@
   font-family: Raleway, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 20px;
+  word-break: break-all;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .combined {
