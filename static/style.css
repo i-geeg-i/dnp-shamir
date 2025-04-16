@@ -3,7 +3,6 @@
   border-right: solid 2px #403d39;
   border-bottom: solid 2px #403d39;
   border-left: solid 2px #403d39;
-  /* background-color: green; */
   padding: 25px 0;
   background-color: #fffdf8;
 }
@@ -29,7 +28,6 @@
 }
 
 .main {
-  /* background-color: red; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
@@ -143,4 +141,10 @@
   font-weight: 100;
   font-size: 18px;
   text-align: center;
+  border-radius: 10px;
+  
+}
+
+.footer__last:hover {
+  border: 2px solid #403d39;
 }
