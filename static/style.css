@@ -27,8 +27,6 @@
   font-size: 24px;
 }
 
-
-
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -70,6 +68,11 @@
   line-height: 25px;
 }
 
+.secret,
+.parts {
+  border-radius: 20px;
+}
+
 .section__subheader {
   display: inline-block;
   margin: 15px 0;
@@ -84,18 +87,17 @@
 }
 
 .split__section-list-item {
+  overflow-wrap: anywhere;
   font-family: Raleway, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 20px;
   word-break: break-all;
   white-space: normal;
-  overflow-wrap: anywhere;
 }
 
 .split__section-list.numbered {
   list-style: decimal;
 }
-
 
 .combined {
   font-family: Raleway, Arial, Helvetica, sans-serif;
@@ -140,17 +142,16 @@
   width: 80px;
   height: 80px;
   margin-bottom: 5px;
-  border: 2px solid #403d39;
+  border: 1px solid #403d39;
   border-radius: 20px;
 }
 
 .footer__last {
   margin-top: 10px;
+  border-radius: 10px;
   font-weight: 100;
   font-size: 18px;
   text-align: center;
-  border-radius: 10px;
-  
 }
 
 .footer__last:hover {
