@@ -1,72 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Shamir Secret Sharing | DNP project</title>
-        <link rel="stylesheet" href="../static/global.css">
-        <link rel="stylesheet" href="../static/fonts/fonts.css">
-        <link rel="stylesheet" href="../static/style.css">
-    </head>
-    <body>
-        <header class="header">
-            <h1 class="header__text big">shamir secret sharing</h1>
-            <h2 class="header__text small">split the secrecy</h2>
-        </header>
-        <main class="main">
-            <div class="main__section split__section">
-                <h3 class="section__header">Split</h3>
-                <div class="split__section-numbers">
-            
-                    <input class="required form-control" type="number" value="3" min="2" max="255">
-                    from
-                    <input class="total form-control" type="number" value="5" min="2" max="255">
-                    to reconstruct
-                </div>
-                <textarea class="secret form-control" rows=10 placeholder="Enter your secret here"></textarea>
-                <h4 class="section__subheader">Parts</h4>
-                <ol class="split__section-list">
-                    <li class="split__section-list-item">Enter your secret above.</li>
-                </ol>
-            </div>
-            <div class="main__section combine__section">
-                <h3 class="section__header">Combine</h3>
-                <p class="form-control-static">
-                    Your secrets go here
-                </p>
-                <textarea class="parts form-control" rows=10 placeholder="Enter parts line by line"></textarea>
-                <h4 class="section__subheader">Result</h4>
-                <p class="combined">Enter your parts above.</p>
-            </div>
-        </main>
-        <footer class="footer">
-            <ul class="footer__card-list">
-                <li class="footer__card">
-                    <img src="../static/photo-template.jpg" class="footer__photo" alter="developer photo">
-                    <h2 class="footer__card-name">Alena Averina</h2>
-                    <h2 class="footer__card-description">SCRUM-master</h2>
-                </li>
-                <li class="footer__card">
-                    <img src="../static/photo-template.jpg" class="footer__photo" alter="developer photo">
-                    <h2 class="footer__card-name">Anna Serova</h2>
-                    <h2 class="footer__card-description">Analyst</h2>
-                </li>
-                <li>
-                    <a href="https://github.com/i-geeg-i/dnp-shamir#" target="_blank"><h3 class="footer__last"> - dnp project 2025 - </dnp></dnp></h3></a>
-                </li>
-                <li class="footer__card">
-                    <img src="../static/photo-template.jpg" class="footer__photo" alter="developer photo">
-                    <h2 class="footer__card-name">Egor Glebov</h2>
-                    <h2 class="footer__card-description">Backend-developer</h2>
-                </li>
-                <li class="footer__card">
-                    <img src="../static/photo-template.jpg" class="footer__photo" alter="developer photo">
-                    <h2 class="footer__card-name">Ivan Murzin</h2>
-                    <h2 class="footer__card-description">Frontend-developer</h2>
-                </li>
-            </ul>
-        </footer>
-
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shamir Secret Sharing | DNP project</title>
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/fonts/fonts.css" />
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__text big">shamir secret sharing</h1>
+      <h2 class="header__text small">split the secrecy</h2>
+    </header>
+    <main class="main">
+      <div class="main__section split__section">
+        <h3 class="section__header">Split</h3>
+        <div class="split__section-numbers">
+          <input
+            class="required form-control"
+            type="number"
+            value="3"
+            min="2"
+            max="255"
+          />
+          from
+          <input
+            class="total form-control"
+            type="number"
+            value="5"
+            min="2"
+            max="255"
+          />
+          to reconstruct
+        </div>
+        <textarea
+          class="secret form-control"
+          rows="10"
+          placeholder="Enter your secret here"
+        ></textarea>
+        <h4 class="section__subheader">Parts</h4>
+        <ol class="split__section-list">
+          <li class="split__section-list-item">Enter your secret above.</li>
+        </ol>
+      </div>
+      <div class="main__section combine__section">
+        <h3 class="section__header">Combine</h3>
+        <p class="form-control-static">Your secrets go here</p>
+        <textarea
+          class="parts form-control"
+          rows="10"
+          placeholder="Enter parts line by line"
+        ></textarea>
+        <h4 class="section__subheader">Result</h4>
+        <p class="combined">Enter your parts above.</p>
+      </div>
+    </main>
+    <footer class="footer">
+      <ul class="footer__card-list">
+        <li class="footer__card">
+          <img
+            src="../static/photo-template.jpg"
+            class="footer__photo"
+            alter="developer photo"
+          />
+          <h2 class="footer__card-name">Alena Averina</h2>
+          <h2 class="footer__card-description">SCRUM-master</h2>
+        </li>
+        <li class="footer__card">
+          <img
+            src="../static/photo-template.jpg"
+            class="footer__photo"
+            alter="developer photo"
+          />
+          <h2 class="footer__card-name">Anna Serova</h2>
+          <h2 class="footer__card-description">Analyst</h2>
+        </li>
+        <li>
+          <a href="https://github.com/i-geeg-i/dnp-shamir#" target="_blank"
+            ><h3 class="footer__last">- dnp project 2025 -</h3></a
+          >
+        </li>
+        <li class="footer__card">
+          <img
+            src="../static/photo-template.jpg"
+            class="footer__photo"
+            alter="developer photo"
+          />
+          <h2 class="footer__card-name">Egor Glebov</h2>
+          <h2 class="footer__card-description">Backend-developer</h2>
+        </li>
+        <li class="footer__card">
+          <img
+            src="../static/photo-template.jpg"
+            class="footer__photo"
+            alter="developer photo"
+          />
+          <h2 class="footer__card-name">Ivan Murzin</h2>
+          <h2 class="footer__card-description">Frontend-developer</h2>
+        </li>
+      </ul>
+    </footer>
+  </body>
 </html>
