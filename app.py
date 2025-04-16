@@ -64,21 +64,38 @@ def union():
 
 def check(user_input: str, keys: int, parts: int) -> str: #Make code from text
     try:
-        return solve(toInt(user_input), keys, parts)
+        return solve(toInt(user_input), parts, keys)
     except:
         return "Oooops!"
 
-def checkBack(user_input: str) -> int: #MAke text from code
+def checkBack(user_input: str) -> str: #MAke text from code
     #TODO decide how to use
     try:
-        return resolve(user_input)
+        return fromInt(resolve(user_input))
     except:
-        return 0
+        return 'Ooooops!'
 
 def toInt(input: str) -> int:
     utf_values_combined = ''.join([str(ord(char)) for char in input])
     utf_integer = int(utf_values_combined)
     return utf_integer
+
+def fromInt(utf_integer: int) -> str:
+    utf_str = str(utf_integer)
+    decoded = ''
+    i = 0
+    while i < len(utf_str):
+        # Try to match 3-digit UTF codes first (covers common characters)
+        if i + 2 < len(utf_str) and 32 <= int(utf_str[i:i+3]) <= 126:
+            decoded += chr(int(utf_str[i:i+3]))
+            i += 3
+        # Fallback for 2-digit codes (rarely needed unless you've encoded them)
+        elif i + 1 < len(utf_str):
+            decoded += chr(int(utf_str[i:i+2]))
+            i += 2
+        else:
+            raise ValueError("Invalid UTF integer sequence")
+    return decoded
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
