@@ -50,7 +50,7 @@ def split():
     parts = request.form['parts']
     keys = request.form['keys']
     answer = check(user_input, parts, keys)
-    return render_template(answer=answer)
+    return answer
 
 @app.route('/union', methods=['POST'])
 def union():
