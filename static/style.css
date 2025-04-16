@@ -27,6 +27,32 @@
   font-size: 24px;
 }
 
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: transparent; /* or set your own */
+}
+
+.marquee__inner {
+  display: inline-flex;
+  animation: scroll-left 10s linear infinite;
+}
+
+.marquee__inner span {
+  display: inline-block;
+  padding-right: 2rem; /* space between loops */
+  font-size: 1.2rem;
+  color: #333;
+}
+
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr;
