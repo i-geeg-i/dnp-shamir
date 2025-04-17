@@ -23,27 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.text())
       .then((data) => {
         outputList.innerHTML = "";
-      
+
+        // split by line, comma, or both
         const shares = data.trim().split(/\s*,\s*|\n/);
-      
-        // Add .numbered class if we have shares, remove if empty
-        if (shares.length > 0 && shares[0] !== "") {
-          outputList.classList.add("numbered");
-        } else {
-          outputList.classList.remove("numbered");
-        }
-      
-        shares.forEach((share) => {
-          // Strip "1:" or "2:" prefix if it exists
-          const cleaned = share.replace(/^\d+\s*:\s*/, "");
-      
+
+        shares.forEach((share, index) => {
           const li = document.createElement("li");
           li.className = "split__section-list-item";
-          li.innerHTML = `<p>${cleaned}</p>`;
+          li.innerHTML = `
+            <p>${share}</p>
+          `;
           outputList.appendChild(li);
         });
       })
-      
       .catch((error) => {
         console.error("Split failed:", error);
       });
@@ -54,42 +46,3 @@ document.addEventListener("DOMContentLoaded", () => {
   totalInput.addEventListener("input", sendSplitRequest);
   requiredInput.addEventListener("input", sendSplitRequest);
 });
-
-
-const partsInput = document.querySelector(".parts");
-const combinedOutput = document.querySelector(".combined");
-
-function sendUnionRequest() {
-  const rawInput = partsInput.value.trim();
-
-  if (!rawInput) {
-    combinedOutput.textContent = "Enter your parts above.";
-    return;
-  }
-
-  const lines = rawInput.split("\n").filter(line => line.trim() !== "");
-
-  // Add index prefix only if missing
-  const formatted = lines.map((line, idx) => {
-    return /^\d+:\s*/.test(line) ? line : `${idx + 1}:${line.trim()}`;
-  }).join(",");
-
-  const formData = new FormData();
-  formData.append("code", formatted);
-
-  fetch("/union", {
-    method: "POST",
-    body: formData
-  })
-    .then((response) => response.text())
-    .then((result) => {
-      combinedOutput.textContent = result;
-    })
-    .catch((error) => {
-      console.error("Union failed:", error);
-      combinedOutput.textContent = "An error occurred!";
-    });
-}
-
-//  Trigger like split
-partsInput.addEventListener("input", sendUnionRequest);

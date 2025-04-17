@@ -84,6 +84,8 @@
 
 .split__section-list {
   list-style: none;
+  /* should change to numbers */
+  list-style-position: inside;
 }
 
 .split__section-list-item {
@@ -98,6 +100,7 @@
 .split__section-list.numbered {
   list-style: decimal;
 }
+
 
 .combined {
   font-family: Raleway, Arial, Helvetica, sans-serif;
