@@ -46,3 +46,42 @@ document.addEventListener("DOMContentLoaded", () => {
   totalInput.addEventListener("input", sendSplitRequest);
   requiredInput.addEventListener("input", sendSplitRequest);
 });
+
+
+const partsInput = document.querySelector(".parts");
+const combinedOutput = document.querySelector(".combined");
+
+function sendUnionRequest() {
+  const rawInput = partsInput.value.trim();
+
+  if (!rawInput) {
+    combinedOutput.textContent = "Enter your parts above.";
+    return;
+  }
+
+  const lines = rawInput.split("\n").filter(line => line.trim() !== "");
+
+  // Add index prefix only if missing
+  const formatted = lines.map((line, idx) => {
+    return /^\d+:\s*/.test(line) ? line : `${idx + 1}:${line.trim()}`;
+  }).join(",");
+
+  const formData = new FormData();
+  formData.append("code", formatted);
+
+  fetch("/union", {
+    method: "POST",
+    body: formData
+  })
+    .then((response) => response.text())
+    .then((result) => {
+      combinedOutput.textContent = result;
+    })
+    .catch((error) => {
+      console.error("Union failed:", error);
+      combinedOutput.textContent = "An error occurred!";
+    });
+}
+
+//  Trigger like split
+partsInput.addEventListener("input", sendUnionRequest);
