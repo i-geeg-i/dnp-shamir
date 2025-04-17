@@ -62,10 +62,12 @@ function sendUnionRequest() {
   const lines = rawInput.split("\n").filter(line => line.trim() !== "");
 
   // Add index prefix only if missing
+  // const formatted = lines.map((line, idx) => {
+  //   return /^\d+:\s*/.test(line) ? line : `${idx + 1}:${line.trim()}`;
+  // }).join(",");
   const formatted = lines.map((line, idx) => {
-    return /^\d+:\s*/.test(line) ? line : `${idx + 1}:${line.trim()}`;
+    return line;
   }).join(",");
-
   const formData = new FormData();
   formData.append("code", formatted);
 

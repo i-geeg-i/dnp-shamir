@@ -68,8 +68,7 @@ def check(user_input: str, keys: int, parts: int) -> str: #Make code from text
     except:
         return "Oooops!"
 
-def checkBack(user_input: str) -> str: #MAke text from code
-    #TODO decide how to use
+def checkBack(user_input: str) -> str: #Make text from code
     try:
         return fromInt(resolve(user_input))
     except:

@@ -47,7 +47,6 @@ def resolve(input: str) -> int:
         y = int(part[3:])        # The rest is the y-value
         x_s.append(x)
         y_s.append(y)
-
     return lagrange_interpolate(0, x_s, y_s)
 
 
