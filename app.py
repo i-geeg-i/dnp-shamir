@@ -70,10 +70,9 @@ def check(user_input: str, keys: int, parts: int) -> str: #Make code from text
 
 def checkBack(user_input: str) -> str: #Make text from code
     try:
-        print("Try")
         return fromInt(resolve(user_input))
     except Exception as e:
-        print(e)
+        # print(e)
         return 'Ooooops!'
 
 
