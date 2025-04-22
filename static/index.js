@@ -8,38 +8,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const secret = secretInput.value;
     const parts = totalInput.value;
     const required = requiredInput.value;
-
-    if (!secret.trim()) return;
-
+  
+    if (!secret.trim()) {
+      outputList.style.listStyleType = "none";
+      outputList.innerHTML = `
+        <li class="split__section-list-item">Enter your secret above.</li>
+      `;
+      return;
+    }
+  
     const formData = new FormData();
     formData.append("code", secret);
     formData.append("parts", parts);
     formData.append("keys", required);
-
+  
     fetch("/split", {
       method: "POST",
       body: formData
     })
       .then((response) => response.text())
       .then((data) => {
-        outputList.innerHTML = "";
-
-        // split by line, comma, or both
         const shares = data.trim().split(/\s*,\s*|\n/);
-
-        shares.forEach((share, index) => {
-          const li = document.createElement("li");
-          li.className = "split__section-list-item";
-          li.innerHTML = `
-            <p>${share}</p>
+  
+        const listHTML = shares.map((share, index) => {
+          return `
+            <li class="split__section-list-item">
+              ${share}
+            </li>
           `;
-          outputList.appendChild(li);
-        });
+        }).join("");
+  
+        outputList.style.listStyleType = "decimal";
+        outputList.innerHTML = listHTML;
       })
       .catch((error) => {
         console.error("Split failed:", error);
       });
   }
+  
+  
+  
 
   // Trigger on input change
   secretInput.addEventListener("input", sendSplitRequest);
