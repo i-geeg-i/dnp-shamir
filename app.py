@@ -70,31 +70,22 @@ def check(user_input: str, keys: int, parts: int) -> str: #Make code from text
 
 def checkBack(user_input: str) -> str: #Make text from code
     try:
+        print("Try")
         return fromInt(resolve(user_input))
-    except:
+    except Exception as e:
+        print(e)
         return 'Ooooops!'
 
-def toInt(input: str) -> int:
-    utf_values_combined = ''.join([str(ord(char)) for char in input])
-    utf_integer = int(utf_values_combined)
-    return utf_integer
 
-def fromInt(utf_integer: int) -> str:
-    utf_str = str(utf_integer)
-    decoded = ''
-    i = 0
-    while i < len(utf_str):
-        # Try to match 3-digit UTF codes first (covers common characters)
-        if i + 2 < len(utf_str) and 32 <= int(utf_str[i:i+3]) <= 126:
-            decoded += chr(int(utf_str[i:i+3]))
-            i += 3
-        # Fallback for 2-digit codes (rarely needed unless you've encoded them)
-        elif i + 1 < len(utf_str):
-            decoded += chr(int(utf_str[i:i+2]))
-            i += 2
-        else:
-            raise ValueError("Invalid UTF integer sequence")
-    return decoded
+def toInt(s: str) -> int:
+    return int.from_bytes(s.encode('utf-8'), byteorder='big')
+
+def fromInt(n: int) -> str:
+    byte_length = (n.bit_length() + 7) // 8
+    return n.to_bytes(byte_length, byteorder='big').decode('utf-8')
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
