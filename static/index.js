@@ -3,25 +3,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalInput = document.querySelector(".total");
   const requiredInput = document.querySelector(".required");
   const outputList = document.querySelector(".split__section-list");
+  const partsInput = document.querySelector(".parts");
+  const combinedOutput = document.querySelector(".combined");
+
+  function debounce(func, delay) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
 
   function sendSplitRequest() {
-    const secret = secretInput.value;
-    const parts = totalInput.value;
-    const required = requiredInput.value;
-  
-    if (!secret.trim()) {
+    const secret = secretInput.value.trim();
+    const parts = parseInt(totalInput.value, 10);
+    const required = parseInt(requiredInput.value, 10);
+
+    if (!secret) {
       outputList.style.listStyleType = "none";
       outputList.innerHTML = `
         <li class="split__section-list-item">Enter your secret above.</li>
       `;
       return;
     }
-  
+
+    if (
+      isNaN(parts) || isNaN(required) ||
+      required >= parts ||
+      parts < 2 || required < 2
+    ) {
+      outputList.style.listStyleType = "none";
+      outputList.innerHTML = `
+        <li class="split__section-list-item">Incorrect values</li>
+      `;
+      return;
+    }
+
     const formData = new FormData();
     formData.append("code", secret);
     formData.append("parts", parts);
     formData.append("keys", required);
-  
+
     fetch("/split", {
       method: "POST",
       body: formData
@@ -29,15 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.text())
       .then((data) => {
         const shares = data.trim().split(/\s*,\s*|\n/);
-  
-        const listHTML = shares.map((share, index) => {
+
+        const listHTML = shares.map((share) => {
           return `
             <li class="split__section-list-item">
               ${share}
             </li>
           `;
         }).join("");
-  
+
         outputList.style.listStyleType = "decimal";
         outputList.innerHTML = listHTML;
       })
@@ -45,53 +67,39 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Split failed:", error);
       });
   }
-  
-  
-  
 
-  // Trigger on input change
-  secretInput.addEventListener("input", sendSplitRequest);
-  totalInput.addEventListener("input", sendSplitRequest);
-  requiredInput.addEventListener("input", sendSplitRequest);
-});
+  const debouncedSendSplitRequest = debounce(sendSplitRequest, 1000);
+  secretInput.addEventListener("input", debouncedSendSplitRequest);
+  totalInput.addEventListener("input", debouncedSendSplitRequest);
+  requiredInput.addEventListener("input", debouncedSendSplitRequest);
 
+  function sendUnionRequest() {
+    const rawInput = partsInput.value.trim();
 
-const partsInput = document.querySelector(".parts");
-const combinedOutput = document.querySelector(".combined");
+    if (!rawInput) {
+      combinedOutput.textContent = "Enter your parts above.";
+      return;
+    }
 
-function sendUnionRequest() {
-  const rawInput = partsInput.value.trim();
+    const lines = rawInput.split("\n").filter(line => line.trim() !== "");
+    const formatted = lines.map(line => line).join(",");
 
-  if (!rawInput) {
-    combinedOutput.textContent = "Enter your parts above.";
-    return;
+    const formData = new FormData();
+    formData.append("code", formatted);
+
+    fetch("/union", {
+      method: "POST",
+      body: formData
+    })
+      .then((response) => response.text())
+      .then((result) => {
+        combinedOutput.textContent = result;
+      })
+      .catch((error) => {
+        console.error("Union failed:", error);
+        combinedOutput.textContent = "An error occurred!";
+      });
   }
 
-  const lines = rawInput.split("\n").filter(line => line.trim() !== "");
-
-  // Add index prefix only if missing
-  // const formatted = lines.map((line, idx) => {
-  //   return /^\d+:\s*/.test(line) ? line : `${idx + 1}:${line.trim()}`;
-  // }).join(",");
-  const formatted = lines.map((line, idx) => {
-    return line;
-  }).join(",");
-  const formData = new FormData();
-  formData.append("code", formatted);
-
-  fetch("/union", {
-    method: "POST",
-    body: formData
-  })
-    .then((response) => response.text())
-    .then((result) => {
-      combinedOutput.textContent = result;
-    })
-    .catch((error) => {
-      console.error("Union failed:", error);
-      combinedOutput.textContent = "An error occurred!";
-    });
-}
-
-//  Trigger like split
-partsInput.addEventListener("input", sendUnionRequest);
+  partsInput.addEventListener("input", sendUnionRequest);
+});
