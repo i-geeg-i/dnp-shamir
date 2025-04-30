@@ -160,3 +160,70 @@
 .footer__last:hover {
   border: 2px solid #403d39;
 }
+
+
+@media (max-width: 768px) {
+  .header__text.big {
+    font-size: 32px;
+    letter-spacing: 8px;
+  }
+
+  .header__text.small {
+    font-size: 18px;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+    padding: 30px 20px 80px;
+    gap: 30px;
+  }
+
+  .main__section {
+    font-size: 20px;
+    padding: 20px;
+  }
+
+  .split__section-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    line-height: normal;
+  }
+
+  .form-control {
+    font-size: 16px;
+  }
+
+  .secret,
+  .parts {
+    font-size: 16px;
+  }
+
+  .footer__card-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 10px;
+    text-align: center;
+    justify-items: center;
+  }
+  
+  .footer__card-list > li:nth-child(3) {
+    grid-column: span 2;
+  }
+  
+
+  .footer__card-name,
+  .footer__card-description,
+  .footer__last {
+    font-size: 16px;
+  }
+
+  .footer__photo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer__last {
+    margin: 0 auto;
+  }
+}
