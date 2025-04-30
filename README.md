@@ -70,5 +70,9 @@ pip install flask
 python app.py
 Visit http://localhost:5000 in your browser.
 
+### OR
+
+Visit the website: http://38.244.138.103:5000/ in your browser!
+
 ## 🔐 Credits
 Based on the brilliant work of Adi Shamir, 1979. Inspired by the elegance of math, code, and secrets 🖤
