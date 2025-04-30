@@ -67,7 +67,9 @@ It uses polynomial interpolation over finite fields as described in Adi Shamirâ€
 Make sure you have Python 3.8+ installed.
 
 pip install flask
+
 python app.py
+
 Visit http://localhost:5000 in your browser.
 
 ### OR
